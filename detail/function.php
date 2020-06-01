@@ -32,7 +32,7 @@ echo sum(100,200,300) + sum(10,20,30) .PHP_EOL;
 echo $sum(100,200,300) + $sum(10,20,30) .PHP_EOL;
 
 // 強い型付け これで'4'と4を区別する
-declare(strict_types=1);
+// declare(strict_types=1);
 
 // 弱い型付け 引数に入れるデータ型を指定する
 // ただし、このままだと'4'を入れてもintとして解釈する
@@ -43,4 +43,4 @@ function showInfo(?string $name, int $score): void
   echo $name . ':' . $score .PHP_EOL;
 }
 
-showInfo('taguchi','20');
+showInfo('taguchi',20);
