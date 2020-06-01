@@ -11,3 +11,24 @@ if ($score >= 80 && $name === 'kudo') {
 else {
   echo 'OK!' . PHP_EOL;
 }
+
+$signal = 'pink';
+
+switch($signal){
+  case 'red':
+    echo 'Stop!' .PHP_EOL;
+    break;
+
+  case 'ywllow':
+    echo 'Good!' .PHP_EOL;
+    break;
+
+  case 'blue':
+  case 'green':
+    echo 'Go!' .PHP_EOL;
+    break;
+    
+  default:
+  echo 'Wrong signal!' .PHP_EOL;
+  break;
+}
