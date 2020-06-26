@@ -1,13 +1,13 @@
-<?php
+<?php // phpの開始タグ
 $name = 'komarichan'; # 変数は大文字と小文字を区別する
-echo 'Hello ' . $name .PHP_EOL;
+echo 'Hello ' . $name .PHP_EOL; // .PHP_EOLは改行
 echo 'Hi ' . $name .PHP_EOL;
-echo "$name kawaii" .PHP_EOL; #""の中なら変数を呼び出せる
+echo "$name kawaii" .PHP_EOL; # ""の中なら変数を呼び出せる
 
 $number =  2 + '3'; // 数字っぽい文字列を数字として解釈してくれる
 echo $number;
 // 定数はdefineを使う。大文字で、$がつかない
-define('NAME', 'kudo');
+define('NAME', 'kudo'); // NAMEにkudoという値を割り当てる
 // constも定数
 const KUDO = 'kudoryafuka';
 echo NAME .PHP_EOL;
