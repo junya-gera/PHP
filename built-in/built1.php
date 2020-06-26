@@ -55,7 +55,6 @@ print_r(explode(':', $t));
 
 
 $n = 5.6283;
-
 echo ceil($n) . PHP_EOL; // ceil() 切り上げ 6
 echo floor($n) . PHP_EOL; // floor() 切り捨て 5
 echo round($n) . PHP_EOL; // round() 四捨五入 6
