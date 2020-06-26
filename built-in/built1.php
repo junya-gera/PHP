@@ -32,4 +32,14 @@ echo $date . PHP_EOL;
 echo $product . PHP_EOL;
 echo number_format($amount) . PHP_EOL; // number_format() 3桁ごとに,を入れる
 
+$sample2 = 'Call us at 03-3001-1256 or 03-3015-3222';
+$pattern = '/\d{2}-\d{4}-\d{4}/'; // パターンは正規表現を使う
+// preg_match() 文字列の検索
+// preg_match(検索したいパターン,検索したい文字列,検索した結果を格納する変数)
+preg_match_all($pattern,$sample2,$matches);
+print_r($matches);
 
+// preg_replace() 文字列をパターンに応じて置換
+// preg_replace(パターン,置換後の文字列,検索したい文字列)
+$sample2 = preg_replace($pattern, '**-****-****', $sample2);
+echo $sample2 . PHP_EOL;
