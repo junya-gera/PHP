@@ -12,6 +12,7 @@ echo $info . PHP_EOL;
 $input = 'dot_taguchi  ';
 $input = trim($input); // trim() 文字列の改行や空白を除去
 
+// 日本語を扱う場合は、マルチバイトに対応したmb_strlen(),mb_strpos()を使う
 echo strlen($input) . PHP_EOL; // strlen() 文字列の文字数を調べる
 echo strpos($input, '_'). PHP_EOL; // strpos() 文字列の検索
 
