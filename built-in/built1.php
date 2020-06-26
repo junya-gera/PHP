@@ -44,6 +44,7 @@ print_r($matches);
 $sample2 = preg_replace($pattern, '**-****-****', $sample2);
 echo $sample2 . PHP_EOL;
 
+
 $d = [2020, 11, 15];
 // implode() 配列の要素を文字列に連結
 echo implode('_', $d) . PHP_EOL;
@@ -51,3 +52,15 @@ echo implode('_', $d) . PHP_EOL;
 $t = '17:32:45';
 // explode() 文字列を:で区切って配列に格納
 print_r(explode(':', $t));
+
+
+$n = 5.6283;
+
+echo ceil($n) . PHP_EOL; // ceil() 切り上げ 6
+echo floor($n) . PHP_EOL; // floor() 切り捨て 5
+echo round($n) . PHP_EOL; // round() 四捨五入 6
+echo round($n,2) . PHP_EOL; // 小数点2桁で四捨五入 5.63
+
+echo mt_rand(1, 6) . PHP_EOL; // mt_rand() ランダム
+echo max(3, 9, 4) . PHP_EOL; // max() 最大値
+echo min(3, 9, 4) . PHP_EOL; // min() 最小値
