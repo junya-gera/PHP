@@ -9,3 +9,11 @@ $score = 32.246;
 $info = sprintf("[%-15s][%010.2f]", $name, $score);
 echo $info . PHP_EOL;
 
+$input = 'dot_taguchi  ';
+$input = trim($input); // trim() 文字列の改行や空白を除去
+
+echo strlen($input) . PHP_EOL; // strlen() 文字列の文字数を調べる
+echo strpos($input, '_'). PHP_EOL; // strpos() 文字列の検索
+
+$input = str_replace('_', '-', $input); // 文字列の置換
+echo $input . PHP_EOL;
