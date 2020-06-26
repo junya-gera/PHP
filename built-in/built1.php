@@ -43,3 +43,11 @@ print_r($matches);
 // preg_replace(パターン,置換後の文字列,検索したい文字列)
 $sample2 = preg_replace($pattern, '**-****-****', $sample2);
 echo $sample2 . PHP_EOL;
+
+$d = [2020, 11, 15];
+// implode() 配列の要素を文字列に連結
+echo implode('_', $d) . PHP_EOL;
+
+$t = '17:32:45';
+// explode() 文字列を:で区切って配列に格納
+print_r(explode(':', $t));
