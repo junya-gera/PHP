@@ -26,3 +26,12 @@ print_r($diff1); // 3
 
 $common = array_intersect($a, $b); // aとbの共通のもの
 print_r($common);
+
+
+$prices = [100, 200, 300];
+// array_map() 配列全てに同じ処理を行って別の配列に格納
+$newPrices = array_map(
+  function($n){ return $n * 1.1; },
+  $prices
+);
+print_r($newPrices);
