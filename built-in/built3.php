@@ -35,3 +35,14 @@ $newPrices = array_map(
   $prices
 );
 print_r($newPrices);
+
+
+$numbers = range(1, 10);
+// array_filter() 条件にtrueのものを集めて配列を作る
+$eventNumbers = array_filter(
+  $numbers, // array_map()とは逆で先に配列を書く
+  function ($n) {
+    return $n % 2 === 0;
+  }
+);
+print_r($eventNumbers);
