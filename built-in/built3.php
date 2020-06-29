@@ -77,3 +77,25 @@ asort($points);
 print_r($points);
 arsort($points);
 print_r($points);
+
+
+$data = [ // 配列の中に配列が入っている
+  ['name' => 'sirogane', 'score' => 80],
+  ['name' => 'kaguya', 'score' => 60],
+  ['name' => 'cika', 'score' => 70],
+  ['name' => 'isigami', 'score' => 60],
+];
+// usort() 何を比較して並べ変えるかを自分で定義できる
+usort(
+  $data, // ソートしたい配列
+   // どういう並べ替えをするかを定義する関数
+   // PHPが要素を並べ替える時に二つの値をどう比較するかを定義する
+  function($a, $b){
+    if ($a['score'] === $b['score']){
+      return 0; // 二つのscoreの値が同じなら0を返す
+    }
+    return $a['score'] > $b['score'] ? 1 : -1;
+  }
+);
+
+print_r($data);
