@@ -46,3 +46,25 @@ $eventNumbers = array_filter(
   }
 );
 print_r($eventNumbers);
+
+
+$points = [
+  'sirogane' => 80,
+  'kaguya' => 70,
+  'cika' => 60,
+];
+
+$keys = array_keys($points);  // キーのみ配列
+print_r($keys);
+$values = array_values($points); // 値のみ配列
+print_r($values);
+// array_key_exists() キーがあるか調べる
+if (array_key_exists('kaguya', $points) === true){
+  echo 'kaguya is here!' . PHP_EOL; 
+}
+// in_array() 値があるか調べる
+if (in_array(80, $points) === true){
+  echo '80 is here!' . PHP_EOL;
+}
+// array_search() 値を検索して対応する値を返す
+echo array_search(60, $points) . PHP_EOL;
