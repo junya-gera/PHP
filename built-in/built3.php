@@ -68,3 +68,12 @@ if (in_array(80, $points) === true){
 }
 // array_search() 値を検索して対応する値を返す
 echo array_search(60, $points) . PHP_EOL;
+
+
+// sort,rsortは値を基準にソートするが、キーを消して連番にしてしまう
+// asort,arsortなら値基準はそのままでキーを残したままソートする
+// ksort,krsortならキー基準でソートする(アルファベットなど)
+asort($points);
+print_r($points);
+arsort($points);
+print_r($points);
