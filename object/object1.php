@@ -5,7 +5,7 @@ class Post
 {
   // プロパティ
   public $text;
-  public $likes = 0; // 0で初期化
+  private $likes = 0; // 0で初期化。privateなのでクラスの外では操作できない
 
   // コンストラクタ
   public function __construct($text)
