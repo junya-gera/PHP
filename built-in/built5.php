@@ -16,14 +16,21 @@
 // fwrite($fp, "taro\n");
 
 // 'r'は読み込み
-$fp = fopen('names.txt', 'r');
+// $fp = fopen('names.txt', 'r');
 // fread() サイズを指定して一気に読みこむ
 // $contents = fread($fp, filesize('names.txt'));
 
 // fgets() 1行ずつ読み込む。読み込む行がなくなったらfalseを返す
-while (($line = fgets($fp)) !== false){
-  echo $line;
-}
+// while (($line = fgets($fp)) !== false){
+//   echo $line;
+// }
 // fclose() 書き込み終了
-fclose($fp);
+// fclose($fp);
 // echo $contents;
+
+
+$contents = "taro\njuro\nsaburo\n";
+// fopen以外のファイル書き込み
+file_put_contents('names.txt', $contents);
+$contents = file_get_contents('names.txt');
+echo $contents;
