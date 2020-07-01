@@ -3,6 +3,13 @@
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
 
+// interface 抽象メソッドのみを持つことができ、好きなクラスに強制できる
+// いくつでもクラスに継承に関係なく実装できる
+interface LikeInterface
+{
+  public function like();
+}
+
 // abstract class 抽象クラス
 // それ自体からはインスタンスを作ることができない、継承を前提としたクラス
 // 
@@ -30,13 +37,20 @@ abstract class BasePost // 親クラスまたはsuperクラス
   abstract public function show();
 }
 
-class Post extends BasePost
+class Post extends BasePost implements likeInterface
 {
+  private $likes = 0;
+
+  public function like()
+  {
+    $this->likes++;
+  }
+
   // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
   // final public function show()
   public function show()
   {
-    printf('%s' . PHP_EOL, $this->text);
+    printf('%s (%d)' . PHP_EOL, $this->text, $this->likes);
   }
 
 }
@@ -63,9 +77,15 @@ class sponsoredPost extends BasePost // 子クラスまたはsubクラス
   }
 }
 
-class premiumPost extends BasePost // 子クラスまたはsubクラス
+class premiumPost extends BasePost implements likeInterface
 {
   private $price;
+  private $likes = 0;
+
+  public function like()
+  {
+    $this->likes++;
+  }
 
   public function __construct($text, $price)
   {
@@ -76,7 +96,7 @@ class premiumPost extends BasePost // 子クラスまたはsubクラス
   // override 親クラスのメソッドと同名のメソッドを使うこと
   public function show()
   {
-    printf('%s [%d JPY]' . PHP_EOL, $this->text, $this->price);
+    printf('%s (%d) [%d JPY]' . PHP_EOL, $this->text, $this->likes, $this->price);
   }
 }
 
@@ -93,6 +113,9 @@ function processPost(BasePost $post)
 {
   $post->show();
 }
+
+$posts[0]->like();
+$posts[3]->like();
 
 // sponsoredPost型のインスタンスはデータ型の継承がされているので、
 // Post型のインスタンスとして扱うことができる
