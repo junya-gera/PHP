@@ -3,7 +3,7 @@
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
 
-class Post
+class Post // 親クラスまたはsuperクラス
 {
   private string $text; // 型宣言 string型しか受け付けない
   private static $count; // クラスプロパティ
@@ -27,13 +27,20 @@ class Post
   }
 }
 
+class sponsoredPost extends Post // 子クラスまたはsubクラス
+{
+
+}
+
 $posts = [];
 
 $posts[0] = new Post('hello');
 $posts[1] = new Post('hello again');
+$posts[2] = new sponsoredPost('hello hello');
 
 $posts[0]->show();
 $posts[1]->show();
+$posts[2]->show();
 
 Post::showInfo(); // クラスから直接クラスメソッドを呼び出す
 echo Post::VERSION . PHP_EOL;
