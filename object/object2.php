@@ -2,6 +2,9 @@
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
 
+// 名前空間が長い時に使う。MyPHPAppだけでよくなる(110行目)
+use Dotinstall\MyPHPApp;
+
 // 別のファイルを読み込む
 // require('Post.php');  ファイルが読み込めなかった時に処理が止まる
 // include('Post.php');  処理が止まらない
@@ -107,8 +110,8 @@ class premiumPost extends BasePost implements likeInterface
 
 $posts = [];
 
-$posts[0] = new Post('hello');
-$posts[1] = new Post('hello again');
+$posts[0] = new MyPHPApp\Post('hello');
+$posts[1] = new MyPHPApp\Post('hello again');
 $posts[2] = new sponsoredPost('hello hello', 'dotinstall');
 $posts[3] = new premiumPost('hello there', 300);
 
