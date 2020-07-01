@@ -3,10 +3,19 @@
 declare(strict_types=1);
 
 // 別のファイルを読み込む
-require('Post.php'); // ファイルが読み込めなかった時に処理が止まる
+// require('Post.php');  ファイルが読み込めなかった時に処理が止まる
 // include('Post.php');  処理が止まらない
 // require_once('Post.php'); 既にファイルが読み込まれていたらスキップする
 // include_once('Post.php');
+
+// 読み込むクラスが多くなってくるといちいち全部書くのが面倒→オートロード
+// spl_autoload_register 引数には関数をとる
+// newをした時にそのクラスが読み込まれていなかったら呼ばれる関数
+// そのクラス名をこの無名関数の引数として渡してくれるので$classという変数で受ける
+// 110行目でnew Postしているので、$classにはPostが入り、Post.phpを読み込む
+spl_autoload_register(function ($class){
+  require($class . '.php');
+});
 
 // trait 共通の記述をまとめることができる
 // 継承しているクラスやインターフェースがごちゃついている時、
