@@ -61,15 +61,32 @@ class sponsoredPost extends BasePost // 子クラスまたはsubクラス
   {
     printf('%s by %s' . PHP_EOL, $this->text, $this->sponsor);
   }
-
-
 }
+
+class premiumPost extends BasePost // 子クラスまたはsubクラス
+{
+  private $price;
+
+  public function __construct($text, $price)
+  {
+    parent::__construct($text); // 親クラスのコンストラクタを使う
+    $this->price = $price;
+  }
+
+  // override 親クラスのメソッドと同名のメソッドを使うこと
+  public function show()
+  {
+    printf('%s [%d JPY]' . PHP_EOL, $this->text, $this->price);
+  }
+}
+
 
 $posts = [];
 
 $posts[0] = new Post('hello');
 $posts[1] = new Post('hello again');
 $posts[2] = new sponsoredPost('hello hello', 'dotinstall');
+$posts[3] = new premiumPost('hello there', 300);
 
 // 引数にPost型の$postのみ受け付けるという意味
 function processPost(BasePost $post)
