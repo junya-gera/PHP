@@ -1,7 +1,12 @@
 <?php
-
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
+
+// 別のファイルを読み込む
+require('Post.php'); // ファイルが読み込めなかった時に処理が止まる
+// include('Post.php');  処理が止まらない
+// require_once('Post.php'); 既にファイルが読み込まれていたらスキップする
+// include_once('Post.php');
 
 // trait 共通の記述をまとめることができる
 // 継承しているクラスやインターフェースがごちゃついている時、
@@ -48,19 +53,6 @@ abstract class BasePost // 親クラスまたはsuperクラス
   
   // show()メソッドは子クラスの方で必ず定義してね(抽象メソッド)
   abstract public function show();
-}
-
-class Post extends BasePost implements likeInterface
-{
-  use LikeTrait;
-
-  // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
-  // final public function show()
-  public function show()
-  {
-    printf('%s (%d)' . PHP_EOL, $this->text, $this->likes);
-  }
-
 }
 
 class sponsoredPost extends BasePost // 子クラスまたはsubクラス
