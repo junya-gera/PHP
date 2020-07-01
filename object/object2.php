@@ -29,6 +29,18 @@ class Post // 親クラスまたはsuperクラス
 
 class sponsoredPost extends Post // 子クラスまたはsubクラス
 {
+  private $sponsor;
+
+  public function __construct($text, $sponsor)
+  {
+    parent::__construct($text); // 親クラスのコンストラクタを使う
+    $this->sponsor = $sponsor;
+  }
+
+  public function showSponsor()
+  {
+    printf('%s' . PHP_EOL, $this->sponsor);
+  }
 
 }
 
@@ -36,11 +48,12 @@ $posts = [];
 
 $posts[0] = new Post('hello');
 $posts[1] = new Post('hello again');
-$posts[2] = new sponsoredPost('hello hello');
+$posts[2] = new sponsoredPost('hello hello', 'dotinstall');
 
 $posts[0]->show();
 $posts[1]->show();
 $posts[2]->show();
+$posts[2]->showSponsor();
 
 Post::showInfo(); // クラスから直接クラスメソッドを呼び出す
 echo Post::VERSION . PHP_EOL;
