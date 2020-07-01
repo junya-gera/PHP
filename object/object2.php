@@ -5,7 +5,8 @@ declare(strict_types=1);
 
 class Post // 親クラスまたはsuperクラス
 {
-  private string $text; // 型宣言 string型しか受け付けない
+  // protected 自身のクラスと、自身のクラスを継承したクラスまで使える
+  protected string $text; // 型宣言 string型しか受け付けない
   private static $count; // クラスプロパティ
   public const VERSION = 0.1; // オブジェクト定数
 
@@ -15,7 +16,8 @@ class Post // 親クラスまたはsuperクラス
     self::$count++;
   }
 
-  public function show()
+  // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
+  final public function show()
   {
     printf('%s' . PHP_EOL, $this->text);
   }
@@ -41,6 +43,13 @@ class sponsoredPost extends Post // 子クラスまたはsubクラス
   {
     printf('%s' . PHP_EOL, $this->sponsor);
   }
+
+  // override 親クラスのメソッドと同名のメソッドを使うこと
+  public function show()
+  {
+    printf('%s by %s' . PHP_EOL, $this->text, $this->sponsor);
+  }
+
 
 }
 
