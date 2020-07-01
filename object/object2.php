@@ -3,6 +3,19 @@
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
 
+// trait 共通の記述をまとめることができる
+// 継承しているクラスやインターフェースがごちゃついている時、
+// 一部の記述だけまとめたいときに向いている
+trait LikeTrait
+{
+  private $likes = 0;
+
+  public function like()
+  {
+    $this->likes++;
+  }
+}
+
 // interface 抽象メソッドのみを持つことができ、好きなクラスに強制できる
 // いくつでもクラスに継承に関係なく実装できる
 interface LikeInterface
@@ -39,12 +52,7 @@ abstract class BasePost // 親クラスまたはsuperクラス
 
 class Post extends BasePost implements likeInterface
 {
-  private $likes = 0;
-
-  public function like()
-  {
-    $this->likes++;
-  }
+  use LikeTrait;
 
   // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
   // final public function show()
@@ -79,13 +87,8 @@ class sponsoredPost extends BasePost // 子クラスまたはsubクラス
 
 class premiumPost extends BasePost implements likeInterface
 {
+  use LikeTrait;
   private $price;
-  private $likes = 0;
-
-  public function like()
-  {
-    $this->likes++;
-  }
 
   public function __construct($text, $price)
   {
