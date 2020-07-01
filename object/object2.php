@@ -3,7 +3,16 @@
 // これがなければ5もstringと判断してしまう
 declare(strict_types=1);
 
-class Post // 親クラスまたはsuperクラス
+// abstract class 抽象クラス
+// それ自体からはインスタンスを作ることができない、継承を前提としたクラス
+// 
+abstract class BasePost // 親クラスまたはsuperクラス
+{
+  // show()メソッドは子クラスの方で必ず定義してね(抽象メソッド)
+  abstract public function show();
+}
+
+class Post extends BasePost
 {
   // protected 自身のクラスと、自身のクラスを継承したクラスまで使える
   protected string $text; // 型宣言 string型しか受け付けない
@@ -30,7 +39,7 @@ class Post // 親クラスまたはsuperクラス
   }
 }
 
-class sponsoredPost extends Post // 子クラスまたはsubクラス
+class sponsoredPost extends BasePost // 子クラスまたはsubクラス
 {
   private $sponsor;
 
