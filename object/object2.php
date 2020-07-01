@@ -17,7 +17,8 @@ class Post // 親クラスまたはsuperクラス
   }
 
   // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
-  final public function show()
+  // final public function show()
+  public function show()
   {
     printf('%s' . PHP_EOL, $this->text);
   }
@@ -59,10 +60,23 @@ $posts[0] = new Post('hello');
 $posts[1] = new Post('hello again');
 $posts[2] = new sponsoredPost('hello hello', 'dotinstall');
 
-$posts[0]->show();
-$posts[1]->show();
-$posts[2]->show();
-$posts[2]->showSponsor();
+// 引数にPost型の$postのみ受け付けるという意味
+function processPost(Post $post)
+{
+  $post->show();
+}
+
+// sponsoredPost型のインスタンスはデータ型の継承がされているので、
+// Post型のインスタンスとして扱うことができる
+foreach($posts as $post)
+{
+  processPost($post);
+}
+
+// $posts[0]->show();
+// $posts[1]->show();
+// $posts[2]->show();
+// $posts[2]->showSponsor();
 
 Post::showInfo(); // クラスから直接クラスメソッドを呼び出す
 echo Post::VERSION . PHP_EOL;
