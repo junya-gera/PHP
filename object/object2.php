@@ -8,12 +8,6 @@ declare(strict_types=1);
 // 
 abstract class BasePost // 親クラスまたはsuperクラス
 {
-  // show()メソッドは子クラスの方で必ず定義してね(抽象メソッド)
-  abstract public function show();
-}
-
-class Post extends BasePost
-{
   // protected 自身のクラスと、自身のクラスを継承したクラスまで使える
   protected string $text; // 型宣言 string型しか受け付けない
   private static $count; // クラスプロパティ
@@ -25,6 +19,19 @@ class Post extends BasePost
     self::$count++;
   }
 
+  public static function showInfo() // クラスメソッド
+  {
+    printf('Count: %d' . PHP_EOL, self::$count);
+    printf('Version: %.1f' . PHP_EOL, self::VERSION);
+  }
+
+  
+  // show()メソッドは子クラスの方で必ず定義してね(抽象メソッド)
+  abstract public function show();
+}
+
+class Post extends BasePost
+{
   // final これをつけると子クラスでこのメソッドをオーバーライドできなくなる
   // final public function show()
   public function show()
@@ -32,11 +39,6 @@ class Post extends BasePost
     printf('%s' . PHP_EOL, $this->text);
   }
 
-  public static function showInfo() // クラスメソッド
-  {
-    printf('Count: %d' . PHP_EOL, self::$count);
-    printf('Version: %.1f' . PHP_EOL, self::VERSION);
-  }
 }
 
 class sponsoredPost extends BasePost // 子クラスまたはsubクラス
@@ -70,7 +72,7 @@ $posts[1] = new Post('hello again');
 $posts[2] = new sponsoredPost('hello hello', 'dotinstall');
 
 // 引数にPost型の$postのみ受け付けるという意味
-function processPost(Post $post)
+function processPost(BasePost $post)
 {
   $post->show();
 }
