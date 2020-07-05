@@ -1,24 +1,11 @@
 <?php
-
+// php -S localhost:8000 でビルトインwebサーバーを使用
 require_once(__DIR__ . '/config.php');
+require_once(__DIR__ . '/Quiz.php');
 
-$quizSet = [];
-
-$quizset[] = [
-'q' => 'What is A?',
-'a' => ['A0','A1','A2','A3']
-];
-$quizset[] = [
-'q' => 'What is B?',
-'a' => ['B0','B1','B2','B3']
-];
-$quizset[] = [
-'q' => 'What is C?',
-'a' => ['C0','C1','C2','C3']
-];
-
-$current_num = 0; // 現在何問目の問題を解いているか
-$data = $quizSet[$current_num]; // 表示する問題
+// Quizクラスのインスタンスを作成 名前空間はMyApp
+$quiz = new MyApp\Quiz();
+$data = $quiz->getCurrentQuiz(); // 表示する問題をQuizクラスのメソッドで取得
 shuffle($data['a']); // shuffle 配列の要素をシャッフル
 ?>
 
