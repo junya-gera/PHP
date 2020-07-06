@@ -32,7 +32,7 @@ $(function(){
 
   $('#btn').on('click', function(){
     if (!$(this).hasClass('disabled')){ // disabledがなければリロードできる
-      location.reload();
+      location.reload(); // 現在のURLを再読み込みする
     }
   })
 });

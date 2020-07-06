@@ -5,8 +5,12 @@ require_once(__DIR__ . '/Quiz.php');
 
 // Quizクラスのインスタンスを作成 名前空間はMyApp
 $quiz = new MyApp\Quiz();
-$data = $quiz->getCurrentQuiz(); // 表示する問題をQuizクラスのメソッドで取得
-shuffle($data['a']); // shuffle 配列の要素をシャッフル
+
+// isFinishedではない場合、データを引っ張ってくる
+if (!$quiz->isFinished()){
+  $data = $quiz->getCurrentQuiz(); // 表示する問題をQuizクラスのメソッドで取得
+  shuffle($data['a']); // shuffle 配列の要素をシャッフル
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,17 +21,23 @@ shuffle($data['a']); // shuffle 配列の要素をシャッフル
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="container">
-    <h1>Q. <?= h($data['q']); ?></h1>
-    <ul>
-      <?php foreach ($data['a'] as $a) : ?>
-        <li class="answer"><?= h($a); ?></li>
-      <?php endforeach; ?>
-    </ul>
-
-    <div id="btn" class="disabled">Next Question</div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="quiz.js"></script>
-</body>
+  <!-- もしisFinishedなら終了画面 -->
+  <?php if ($quiz->isFinished()) : ?>
+    <a href="">finished!</a>
+    <?php $quiz->reset(); ?>
+    <?php else : ?>
+      <div id="container">
+        <h1>Q. <?= h($data['q']); ?></h1>
+        <ul>
+          <?php foreach ($data['a'] as $a) : ?>
+            <li class="answer"><?= h($a); ?></li>
+            <?php endforeach; ?>
+          </ul>
+          
+          <div id="btn" class="disabled">Next Question</div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="quiz.js"></script>
+        <?php endif; ?>
+  </body>
 </html>

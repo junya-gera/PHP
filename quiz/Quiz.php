@@ -16,7 +16,18 @@ class Quiz {
 
   public function checkAnswer(){
     $correctAnswer = $this->_quizSet[$_SESSION['current_num']]['a'][0];
+    $_SESSION['current_num']++;
     return $correctAnswer;
+  }
+
+  // 最後の問題まで行ったら違う画面を表示させるメソッド
+  public function isFinished() {
+    return count($this->_quizSet) === $_SESSION['current_num'];
+  }
+
+  // $current_numをリセット
+  public function reset() {
+    $_SESSION['current_num'] = 0;
   }
 
   public function getCurrentQuiz() {
