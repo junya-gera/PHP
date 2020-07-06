@@ -12,9 +12,11 @@ class Quiz {
     if (!isset($_SESSION['current_num'])){
       $_SESSION['current_num'] = 0;
     }
+  }
 
-    $current_num = 0; // 現在何問目の問題を解いているか
-
+  public function checkAnswer(){
+    $correctAnswer = $this->_quizSet[$_SESSION['current_num']]['a'][0];
+    return $correctAnswer;
   }
 
   public function getCurrentQuiz() {

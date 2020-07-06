@@ -9,6 +9,7 @@ $(function(){
 
     // 終わった後の処理はdoneに続けて書く
     }).done(function(res){ // 返ってくるデータをresにする
+      alert(res.correct_answer);
       if (answer === res.correct_answer){
         // correct!
       } else {
