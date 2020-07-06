@@ -3,6 +3,10 @@ $(function(){
 
   $('.answer').on('click',function(){
     var $selected = $(this);  // クリックされた答えを$selectedに入れる
+    // 既にボタンが押されていたらもう押せなくする
+    if ($selected.hasClass('correct') || $selected.hasClass('wrong')){
+      return;
+    }
     $selected.addClass('selected');
     var answer = $selected.text(); // 答えのテキストをanswerとして保持
 
@@ -22,6 +26,13 @@ $(function(){
       } else {
         $selected.text(answer + '... WRONG!');
       }
-    })
+      $('#btn').removeClass('disabled'); // ネクストボタンが押せる
+    });
+  });
+
+  $('#btn').on('click', function(){
+    if (!$(this).hasClass('disabled')){ // disabledがなければリロードできる
+      location.reload();
+    }
   })
-})
+});
