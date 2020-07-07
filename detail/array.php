@@ -6,7 +6,7 @@ $scores = [
 'third'  => 100]
 ;
 
-// 配列の中身をわかりやすく表示
+// 配列の中身をわかりやすく表示 型など
 var_dump($scores);
 print_r($scores);
 echo $scores['first'] .PHP_EOL;
@@ -15,12 +15,13 @@ foreach ($scores as $key => $score) {
   echo $key . ':' . $score .PHP_EOL;
 }
 
-function getStats(...$numbers){  // 可変長引数
+function getStats(...$numbers){  // 可変長引数 引数が何個になってもいい
   $total = 0;
   foreach ($numbers as $number) {
     $total += $number;
   }
-  return [$total, $total / count($numbers)]; //複数の返り値
+  // 合計と平均を配列にする
+  return [$total, $total / count($numbers)];
 }
 
 // 複数の返り値を受け取りそれぞれ変数に代入
