@@ -13,6 +13,7 @@ $input = 'dot_taguchi  ';
 $input = trim($input); // trim() 文字列の改行や空白を除去
 
 // 日本語を扱う場合は、マルチバイトに対応したmb_strlen(),mb_strpos()を使う
+// strlenはバイト数を調べる。日本語は1文字3バイト計算なので、おかしくなる
 echo strlen($input) . PHP_EOL; // strlen() 文字列の文字数を調べる
 echo strpos($input, '_'). PHP_EOL; // strpos() 文字列の検索
 
@@ -20,7 +21,7 @@ $input = str_replace('_', '-', $input); // 文字列の置換
 echo $input . PHP_EOL;
 
 $sample = '20200320Item-A  1200';
-// substr_replace() 文字列の置換
+// substr_replace() 文字列の置換 8文字目から8文字
 $sample = substr_replace($sample, 'Item-B  ',8, 8);
 
 // substr() 値を切り出す
