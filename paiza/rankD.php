@@ -20,3 +20,6 @@ while ($input){
 $stocks = $array[0] / $array[1];
 $margin = ($stocks * $array[2]) - $array[0];
 echo floor($margin);
+
+
+

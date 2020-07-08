@@ -112,4 +112,25 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
 	    $wrong = 0;
 	}
 	
-	echo $point;
+  echo $point;
+  
+
+
+// ★C058 模様揃え 文字の1文字目を後ろに移動、何回で同じ文字列になるか
+  $input_line = fgets(STDIN);
+    $array = explode(" ", $input_line);
+    
+    $count = 0;
+    $a = trim($array[2]);
+
+    if ($array[1] == $a){ // 同じ文字列なら0
+        echo 0;
+    } else {
+        while ($array[1] != $a){ // 文字が違う間ループ
+            $move = substr($a, 0, 1); // $moveに1文字目を入れる
+            $a = $a . $move; // 後ろに$moveをつける
+            $a = substr($a, 1); // 1文字目を削除
+            $count++; // 1回移動した
+        }
+    echo $count;
+    }
