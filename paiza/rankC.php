@@ -1,6 +1,6 @@
 <?php
 
-// C074 文章サイズ変更 X文字ごとに改行を入れる
+// ★C074 文章サイズ変更 X文字ごとに改行を入れる
 
 $input = trim(fgets(STDIN)); // 複数行を配列に
 while ($input){
@@ -19,7 +19,7 @@ echo chunk_split($str, $int[2]) ."\n"; // $int[2] = 6文字ごとに改行を入
 // こうすると、2桁で改行を入れる場合におかしくなることに気づいた。
 
 
-// C048 タダ飲みコーヒー 割引率をかけていって何円でタダになるか
+// ★C048 タダ飲みコーヒー 割引率をかけていって何円でタダになるか
 $input_line = fgets(STDIN);
 $array = explode(" ", $input_line);
 $X = $array[0];
@@ -35,7 +35,7 @@ echo $pay;
 
 
 
-// C030 白にするか黒にするか 128以上なら1,127以下なら0
+// ★C030 白にするか黒にするか 128以上なら1,127以下なら0
 // 3 2
 // 128 127
 // 127 128
@@ -76,3 +76,40 @@ if ($array[0] == 0){
     echo trim($value) .PHP_EOL; // 配列のバリューだけを空白を削除して1行ずつ表示
     }
 }
+
+
+
+// ★C028 単語テストの採点 2つの単語のスペルがあってるか1文字ずつ照合
+$input = trim(fgets(STDIN)); // 複数行を配列に
+    while ($input){
+	$array[] = $input;
+	$input = trim(fgets(STDIN));
+    }
+    
+	array_shift($array);
+	
+	$point = 0;
+	$wrong = 0;
+	
+	foreach($array as $line){
+	    $spells = explode(" ", $line);
+	   
+	    if ($spells[0] == $spells[1]){ // 全く同じなら2点
+	        $point += 2;
+	    } elseif (mb_strlen($spells[0]) == mb_strlen($spells[1])) { // 文字数が同じ
+	        $a = str_split($spells[0]); // 1文字ずつ配列にする
+	        $b = str_split($spells[1]);
+	        
+	        for ($i = 0; $i <= count($a); $i++) { // 文字の数だけループ
+	            if ($a[$i] != $b[$i]){  // 文字を順番に照合、間違ってたらwrong++
+	                $wrong++;
+	            }
+	        }
+	        if ($wrong == 1){
+              $point++; // 間違いが一箇所だけなら1点
+	        }
+	    }
+	    $wrong = 0;
+	}
+	
+	echo $point;
