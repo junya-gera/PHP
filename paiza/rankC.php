@@ -134,3 +134,33 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
         }
     echo $count;
     }
+
+
+
+    // ★C013 ポイントカードの計算 3,5のつく日はポイントアップ
+  $input = trim(fgets(STDIN)); // 複数行を配列に
+  while ($input){
+	$array[] = $input;
+	$input = trim(fgets(STDIN));
+  }
+    
+  array_shift($array);
+  
+  $point = 0;
+  
+  foreach($array as $days){
+      $line = explode(" ", $days);
+      $day = $line[0];
+      $price = $line[1];
+      
+      if(strpos($day, '5') !== false){ // $dayに5が含まれる場合
+          $point += floor($price * 0.05);
+      } elseif (strpos($day, '3') !== false){
+          $point += floor($price * 0.03);
+      } else {
+          $point += floor($price * 0.01);
+      }
+  }
+  
+  echo $point;
+  
