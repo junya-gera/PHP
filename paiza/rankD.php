@@ -10,3 +10,13 @@ if (count($answer) == 1){
 } else {
     echo "No";
 }
+
+// D133 株の利益
+$input = trim(fgets(STDIN)); // 複数行を配列に
+while ($input){
+    $array[] = $input;
+    $input = trim(fgets(STDIN));
+}
+$stocks = $array[0] / $array[1];
+$margin = ($stocks * $array[2]) - $array[0];
+echo floor($margin);
