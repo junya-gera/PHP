@@ -47,3 +47,31 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
     $point += floor($others / 100 * 1);
     
     echo $point;
+
+
+// C014 ボールが入る箱 1つでも短ければfalse
+    $input = trim(fgets(STDIN)); // 複数行を配列に
+    while ($input){
+    	$array[] = $input;
+    	$input = trim(fgets(STDIN));
+    }
+	
+	$ball = explode(" ", $array[0]);
+	
+	array_shift($array);
+	$count = 0;
+	$storage = true;
+	
+	foreach($array as $box){
+	    $count++;
+	    $length = explode(" ", $box);
+	    foreach($length as $line){
+	        if ($line < $ball[1] * 2){
+	            $storage = false;
+	        }
+	    }
+	    if ($storage == true){
+	        echo $count . PHP_EOL;
+	    }
+	    $storage = true;
+	}
