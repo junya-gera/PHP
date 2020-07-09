@@ -74,4 +74,46 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
 	        echo $count . PHP_EOL;
 	    }
 	    $storage = true;
-	}
+  }
+  
+
+
+// C064 paizaでお食事 // 総当たり計算
+  $input = trim(fgets(STDIN)); // 複数行を配列に
+  while ($input){
+    $array[] = $input;
+    $input = trim(fgets(STDIN));
+}
+$oneLine = explode(" ", $array[0]);
+$foodCount = $oneLine[0];
+
+array_shift($array);
+$foods = [];
+$students = [];
+
+// 250
+// 500
+// 1000
+// 100 200 300
+// 30 250 0
+// 1 1 1000
+// ↑ これを要素が1つのもの、複数あるものに分けて配列化。空白の数をカウント。
+foreach($array as $line){
+  if(substr_count($line, ' ') == 0){
+      $foods[] = $line;
+  } else {
+      $students[] = $line;
+  }
+}
+
+$total = 0;
+
+foreach($students as $student){
+  $grams = explode(" ", $student); // 100 200 300
+  
+  for ($i = 0; $i <= $foodCount; $i++) { // foodsとgramsの数が同じなので$foodCountの数だけ総当たり
+      $total += floor($foods[$i] * ($grams[$i] / 100));
+  }
+  echo $total . PHP_EOL;
+  $total = 0;
+}
