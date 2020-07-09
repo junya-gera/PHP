@@ -164,3 +164,17 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
   
   echo $point;
   
+
+
+// C039 古代の数式 特定の文字の数を数える
+  $input_line = fgets(STDIN);
+  $array = explode("+", $input_line);
+  
+  $sum = 0;
+  foreach($array as $int){
+      $ten = substr_count($int, '<');
+      $one = substr_count($int, '/');
+      $sum = $sum + $ten * 10 + $one; 
+  }
+  
+  echo $sum;
