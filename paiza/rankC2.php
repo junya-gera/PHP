@@ -1,7 +1,7 @@
 <?php
 
 
-// C032 お得なお買い物 switch文 100以下で切り捨て
+//  switch文 100以下で切り捨て
 $input = trim(fgets(STDIN)); // 複数行を配列に
     while ($input){
 	$array[] = $input;
@@ -49,7 +49,7 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
     echo $point;
 
 
-// C014 ボールが入る箱 1つでも短ければfalse
+//  1つでも短ければfalse
     $input = trim(fgets(STDIN)); // 複数行を配列に
     while ($input){
     	$array[] = $input;
@@ -78,7 +78,7 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
   
 
 
-// C064 paizaでお食事 // 総当たり計算
+ // 総当たり計算
   $input = trim(fgets(STDIN)); // 複数行を配列に
   while ($input){
     $array[] = $input;

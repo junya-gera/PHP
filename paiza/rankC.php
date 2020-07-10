@@ -1,6 +1,6 @@
 <?php
 
-// ★C074 文章サイズ変更 X文字ごとに改行を入れる
+//  X文字ごとに改行を入れる
 
 $input = trim(fgets(STDIN)); // 複数行を配列に
 while ($input){
@@ -35,7 +35,7 @@ echo $pay;
 
 
 
-// ★C030 白にするか黒にするか 128以上なら1,127以下なら0
+//  128以上なら1,127以下なら0
 // 3 2
 // 128 127
 // 127 128
@@ -79,7 +79,7 @@ if ($array[0] == 0){
 
 
 
-// ★C028 単語テストの採点 2つの単語のスペルがあってるか1文字ずつ照合
+//  2つの単語のスペルがあってるか1文字ずつ照合
 $input = trim(fgets(STDIN)); // 複数行を配列に
     while ($input){
 	$array[] = $input;
@@ -116,7 +116,7 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
   
 
 
-// ★C058 模様揃え 文字の1文字目を後ろに移動、何回で同じ文字列になるか
+//  文字の1文字目を後ろに移動、何回で同じ文字列になるか
   $input_line = fgets(STDIN);
     $array = explode(" ", $input_line);
     
@@ -137,7 +137,7 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
 
 
 
-    // ★C013 ポイントカードの計算 3,5のつく日はポイントアップ
+    //  3,5のつく日はポイントアップ
   $input = trim(fgets(STDIN)); // 複数行を配列に
   while ($input){
 	$array[] = $input;
@@ -166,7 +166,7 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
   
 
 
-// C039 古代の数式 特定の文字の数を数える
+//  特定の文字の数を数える
   $input_line = fgets(STDIN);
   $array = explode("+", $input_line);
   

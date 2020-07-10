@@ -1,7 +1,6 @@
 <?php
 
-
-// B034 ロボットの歩行実験 
+// 
 $input = trim(fgets(STDIN)); // 複数行を配列に
     while ($input){
 	    $array[] = $input;
@@ -155,3 +154,39 @@ $input = trim(fgets(STDIN)); // 複数行を配列に
     
     echo $X . " " . $Y;
     
+
+
+
+
+// 
+    $input = trim(fgets(STDIN)); // 複数行を配列に
+    while ($input){
+	    $array[] = $input;
+	    $input = trim(fgets(STDIN));
+    }
+    
+    $A = [];
+    $success = [];
+    
+    array_shift($array);
+    foreach($array as $line){
+        $units = explode(" ", $line); // 3 7 4 5 1
+        
+        foreach($units as $unit){
+            $A[] = $unit;
+            array_shift($units);
+            if(array_sum($A) == array_sum($units)){
+                $success[] = str_repeat("A", count($A)) . str_repeat("B", count($units));
+                $A = [];
+                break;
+            }
+        }
+    }
+    if ($success == []){
+        echo "No";
+    } else {
+        echo "Yes" . PHP_EOL;
+        foreach($success as $answer){
+            echo $answer . PHP_EOL;
+        }
+    }

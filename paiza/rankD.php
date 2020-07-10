@@ -1,5 +1,5 @@
 <?php
-// D093 切りのいい番号
+
 // 数値がゾロ目か調べる。重複を無くして配列が1つならtrue
 $input_line = fgets(STDIN);
 $array = str_split($input_line); // 1文字ずつ配列にする
@@ -11,7 +11,7 @@ if (count($answer) == 1){
     echo "No";
 }
 
-// D133 株の利益
+
 $input = trim(fgets(STDIN)); // 複数行を配列に
 while ($input){
     $array[] = $input;
