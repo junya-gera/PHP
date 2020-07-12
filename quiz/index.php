@@ -26,7 +26,7 @@ if (!$quiz->isFinished()){
     <div id="container">
       <div id="result">
         Your score ...
-        <div>100 %</div>
+        <div><?= h($quiz->getScore()); ?></div>
       </div>
       <a href=""><div id="btn">Replay?</div></a>
     </div>
