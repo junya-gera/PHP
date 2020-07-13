@@ -11,7 +11,7 @@ $(function(){
     var answer = $selected.text(); // 答えのテキストをanswerとして保持
 
     $.post('/_answer.php',{ // ajax処理 answer.phpに投げる
-      answer: answer
+      answer: answer // answerという名前でanswerというデータを渡す
     // 終わった後の処理はdoneに続けて書く
     }).done(function(res){ // 返ってくるデータをresにする
       $('.answer').each(function(){ // どれかが押された時点で全ての答えに適用
