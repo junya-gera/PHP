@@ -10,9 +10,13 @@ class Quiz {
     $this->_setup();
 
     if (!isset($_SESSION['current_num'])){
-      $_SESSION['current_num'] = 0;
-      $_SESSION['correct_count'] = 0;
+      $this->_initSession();
     }
+  }
+
+  private function initSession(){
+    $_SESSION['current_num'] = 0;
+    $_SESSION['correct_count'] = 0;
   }
 
   public function checkAnswer(){
