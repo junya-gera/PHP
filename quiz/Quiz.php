@@ -43,8 +43,7 @@ class Quiz {
 
   // $current_numをリセット
   public function reset() {
-    $_SESSION['current_num'] = 0;
-    $_SESSION['correct_count'] = 0;
+    $this->_initSession();
   }
 
   public function getCurrentQuiz() {
