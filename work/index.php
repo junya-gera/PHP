@@ -1,5 +1,14 @@
 <?php 
-  $message = 'こんにちは' . date('l');
+  // 1 ~ 3 をランダムで選択
+  $n = mt_rand(1, 3);
+
+  if ($n === 1) {
+    $message = '<script>alert(1);</script>趣味は卓球です';
+  } elseif ($n === 2) {
+    $message = 'うさぎが好きです';
+  } else {
+    $message = 'PHP ちょっとわかります';
+  }
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +28,10 @@
       </div>
       <div class="info">
         <h1>山田太郎</h1>
-        <p><?= $message ?></p>
+        <!-- 特殊文字を実体参照文字に変換
+          htmlspecialchars(変換する文字列, クォーテーションを変換してねのオプション, 文字コード)
+        -->
+        <p><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
         <ul>
           <li>
             <a href="https://dotinstall.com" target="_blank">
