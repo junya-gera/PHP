@@ -16,6 +16,10 @@ try {
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
       // $fetch_style カラム名で添え字をつけた配列を返す
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      // int で指定した id や likes が文字列で表示されてしまっている
+      // これは PDO で MYSQL を使った場合、デフォルトでエミュレートモードという設定がオンになっているから
+      // それをオフにするオプション
+      PDO::ATTR_EMULATE_PREPARES => false,
     ]
   );
 
@@ -45,8 +49,14 @@ $pdo->query(
 
   // fetch() PDOStatement の結果から行を取得する。 $fetch_style を指定してどのように返すか決める
   // 複数取得する場合は fetchAll()
-  $results = $stmt->fetchAll();
-  var_dump($results);
+  $posts = $stmt->fetchAll();
+  foreach ($posts as $post) {
+    printf(
+      '%s (%d)' . PHP_EOL,
+      $post['message'],
+      $post['likes']
+    );
+  }
   // エラーの情報が入ったオブジェクトを $e で取得することができる
 } catch (PDOException $e) {
   // $e には getMessage() というメソッドが定義されている
