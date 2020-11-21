@@ -18,19 +18,30 @@ try {
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]
   );
-  
+
+  // すでに posts テーブルがある場合は削除する
+  $pdo->query("DROP TABLE IF EXISTS posts");
+  // posts テーブルを作成
+  $pdo->query(
+    "CREATE TABLE posts (
+      id INT NOT NULL AUTO_INCREMENT,
+      message VARCHAR(140),
+      likes INT,
+      PRIMARY KEY (id)
+    )"
+  );
   // SQL を実行してみる
   // アロー演算子で $pdo の query メソッドを使う
   // query メソッドの結果は PDO ステートメントというオブジェクトで返ってくる
-  $stmt = $pdo->query("SELECT 5 + 3");
-  
+  // テーブルを表示
+  $stmt = $pdo->query("SHOW TABLES");
+
   // fetch() PDOStatement の結果から行を取得する。 $fetch_style を指定してどのように返すか決める
   $result = $stmt->fetch();
+  var_dump($result);
   // エラーの情報が入ったオブジェクトを $e で取得することができる
 } catch (PDOException $e) {
   // $e には getMessage() というメソッドが定義されている
   echo $e->getMessage() . PHP_EOL;
   exit;
 }
-
-var_damp($result);
