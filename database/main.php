@@ -30,15 +30,23 @@ try {
       PRIMARY KEY (id)
     )"
   );
+  // レコードを挿入
+$pdo->query(
+  "INSERT INTO posts (message, likes) VALUES
+    ('Thanks', 12),
+    ('thanks', 4),
+    ('arigato', 15)"
+);
+
   // SQL を実行してみる
   // アロー演算子で $pdo の query メソッドを使う
   // query メソッドの結果は PDO ステートメントというオブジェクトで返ってくる
-  // テーブルを表示
-  $stmt = $pdo->query("SHOW TABLES");
+  $stmt = $pdo->query("SELECT * FROM posts");
 
   // fetch() PDOStatement の結果から行を取得する。 $fetch_style を指定してどのように返すか決める
-  $result = $stmt->fetch();
-  var_dump($result);
+  // 複数取得する場合は fetchAll()
+  $results = $stmt->fetchAll();
+  var_dump($results);
   // エラーの情報が入ったオブジェクトを $e で取得することができる
 } catch (PDOException $e) {
   // $e には getMessage() というメソッドが定義されている
