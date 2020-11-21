@@ -52,6 +52,13 @@ $pdo->query(
   // 値を埋め込みたい箇所は ? にする。ここをプレースホルダという
   // PDOStatement はここのようにプリペアードステートメントだったり結果テストだったりするので注意が必要
   $stmt = $pdo->prepare("DELETE FROM posts WHERE likes < ?");
+  // 値を埋め込むには execute() の引数にプレースホルダと紐づける値を配列で渡す
+  // ここで埋め込まれる値は SQL のコマンドではなく文字列として解釈される。SQL では int に対して string
+  // を指定した場合、数字として解釈できるところまでは使ってそれ以降は無視するので 10 になる
+  $stmt->execute([$n]);
+
+  // DELETE FROM posts WHERE likes < "10 OR 1=1"
+  // → DELETE FROM posts WHERE likes < 10
 
   // SQL を実行してみる
   // アロー演算子で $pdo の query メソッドを使う
