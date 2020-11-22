@@ -40,6 +40,18 @@ try {
       ('Arigato', 15)"
   );
 
+  // 2こめにつけたいいねが間違いで1こめにつけたかったとする
+  // 修正のために以下を行うが、まとめて処理する必要があるので beginTransaction と commit で囲んで
+  // トランザクション処理をする
+  $pdo->beginTransaction();
+  $stmt = $pdo->query(
+    "UPDATE posts SET likes = likes + 1 WHERE id = 1"
+  );
+  $stmt = $pdo->query(
+    "UPDATE posts SET likes = likes - 1 WHERE id = 2"
+  );
+$pdo->commit();
+
   $message = 'Merci';
   $likes = 8;
   // プリペアードステートメントの内容が同じなら一回設定すれば使いまわせる
