@@ -45,17 +45,31 @@ $pdo->query(
   // ユーザーが入力した数値より likes が少ないものは削除する
   // このとき悪意のあるユーザーから OR 1=1 のように SQL インジェクションを受ける可能性がある
   // これでは 1=1 が必ず true となるので全てのレコードが削除されてしまう
-  $n = '10 OR 1=1';
+  // $n = '10 OR 1=1';
+  $n = 10;
 
+  // likes が 10 以上のレコードの頭に label をつける
+  $label = '[Good!]';
+  $stmt = $pdo->prepare(
+    "UPDATE
+      posts
+    SET
+      message = CONCAT(?, message)
+    WHERE
+      likes > ?"
+  );
+
+  $stmt->execute([$label, $n]);
+  echo $stmt->rowCount() . 'records updated' . PHP_EOL;
   // $pdo->query("DELETE FROM posts WHERE likes < $n");
   // 値を埋め込んでもきちんと処理をしてくれるプリペアードステートメントを作る
   // 値を埋め込みたい箇所は ? にする。ここをプレースホルダという
   // PDOStatement はここのようにプリペアードステートメントだったり結果テストだったりするので注意が必要
-  $stmt = $pdo->prepare("DELETE FROM posts WHERE likes < ?");
+  // $stmt = $pdo->prepare("DELETE FROM posts WHERE likes < ?");
   // 値を埋め込むには execute() の引数にプレースホルダと紐づける値を配列で渡す
   // ここで埋め込まれる値は SQL のコマンドではなく文字列として解釈される。SQL では int に対して string
   // を指定した場合、数字として解釈できるところまでは使ってそれ以降は無視するので 10 になる
-  $stmt->execute([$n]);
+  // $stmt->execute([$n]);
 
   // DELETE FROM posts WHERE likes < "10 OR 1=1"
   // → DELETE FROM posts WHERE likes < 10
