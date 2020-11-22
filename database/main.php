@@ -49,17 +49,19 @@ $pdo->query(
   $n = 10;
 
   // likes が 10 以上のレコードの頭に label をつける
+  // プレースホルダにはコロンを使って名前をつけることができる
   $label = '[Good!]';
   $stmt = $pdo->prepare(
     "UPDATE
       posts
     SET
-      message = CONCAT(?, message)
+      message = CONCAT(:label, message)
     WHERE
-      likes > ?"
+      likes > :n"
   );
 
-  $stmt->execute([$label, $n]);
+  // 名前つきプレースホルダで値を埋め込む
+  $stmt->execute(['label' => $label, 'n' => $n]);
   echo $stmt->rowCount() . 'records updated' . PHP_EOL;
   // $pdo->query("DELETE FROM posts WHERE likes < $n");
   // 値を埋め込んでもきちんと処理をしてくれるプリペアードステートメントを作る
