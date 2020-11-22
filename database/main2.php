@@ -41,23 +41,27 @@ try {
   $stmt->bindParam('message', $message, PDO::PARAM_STR);
   $stmt->bindParam('likes', $likes, PDO::PARAM_INT);
   $stmt->execute();
+  // lastInsertId() で最後に挿入されたレコードの ID を表示させる
+  echo 'ID: ' . $pdo->lastInsertId() . 'inserted' . PHP_EOL;
 
   // この時点での変数の値で実行される。変数の値を変えながら SQL を何度も実行したいときは bindParam を使う
   $message = 'Gracias';
   $likes = 5;
   $stmt->execute();
+  echo 'ID: ' . $pdo->lastInsertId() . 'inserted' . PHP_EOL;
 
   $message = 'Danke';
   $likes = 11;
   $stmt->execute();
-
+  echo 'ID: ' . $pdo->lastInsertId() . 'inserted' . PHP_EOL;
   
   $stmt = $pdo->query("SELECT * FROM posts");
   $posts = $stmt->fetchAll();
   foreach ($posts as $post) {
     printf(
-     ' %s (%d)' . PHP_EOL, 
-      $post['message'], 
+     '[%d] %s (%d)' . PHP_EOL, 
+      $post["id"],
+      $post['message'],
       $post['likes']
     );
   }
