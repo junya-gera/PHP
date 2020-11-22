@@ -50,18 +50,26 @@ $pdo->query(
 
   // likes が 10 以上のレコードの頭に label をつける
   // プレースホルダにはコロンを使って名前をつけることができる
-  $label = '[Good!]';
-  $stmt = $pdo->prepare(
-    "UPDATE
-      posts
-    SET
-      message = CONCAT(:label, message)
-    WHERE
-      likes > :n"
-  );
+  // $label = '[Good!]';
+  // $stmt = $pdo->prepare(
+  //   "UPDATE
+  //     posts
+  //   SET
+  //     message = CONCAT(:label, message)
+  //   WHERE
+  //     likes > :n"
+  // );
+
+  // LIKE を使って t から始まる messeage を抽出する。 % はこっちで書く
+  $search = 't%';
 
   // 名前つきプレースホルダで値を埋め込む
-  $stmt->execute(['label' => $label, 'n' => $n]);
+  $stmt = $pdo->prepare(
+    "SELECT * FROM posts WHERE message like :search"
+  );
+  // $stmt->execute(['label' => $label, 'n' => $n]);
+  $stmt->execute(['search' => $search]);
+
   echo $stmt->rowCount() . 'records updated' . PHP_EOL;
   // $pdo->query("DELETE FROM posts WHERE likes < $n");
   // 値を埋め込んでもきちんと処理をしてくれるプリペアードステートメントを作る
@@ -79,7 +87,7 @@ $pdo->query(
   // SQL を実行してみる
   // アロー演算子で $pdo の query メソッドを使う
   // query メソッドの結果は PDO ステートメントというオブジェクトで返ってくる
-  $stmt = $pdo->query("SELECT * FROM posts");
+  // $stmt = $pdo->query("SELECT * FROM posts");
 
   // fetch() PDOStatement の結果から行を取得する。 $fetch_style を指定してどのように返すか決める
   // 複数取得する場合は fetchAll()
