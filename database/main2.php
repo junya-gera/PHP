@@ -89,5 +89,7 @@ $pdo->commit();
   }
 } catch (PDOException $e) {
   echo $e->getMessage() . PHP_EOL;
+  // トランザクションでエラーが発生した場合は処理を取り消す
+  $pdo->rollback();
   exit;
 }
