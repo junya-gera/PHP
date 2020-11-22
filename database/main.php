@@ -105,3 +105,10 @@ $pdo->query(
   echo $e->getMessage() . PHP_EOL;
   exit;
 }
+
+// execute() で値を渡した場合、これらの値は全て文字列として埋め込まれる
+// 明示的に型を指定したかった場合、 bindValue() で以下のようにして指定する
+$stmt->bindValue('message', $message, PDO_PARAM_STR);
+$stmt->bindValue('likes', $message, PDO_PARAM_INT);
+// この場合は execute で何も渡さなくていい
+$stmt->execute();
