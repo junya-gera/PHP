@@ -1,5 +1,17 @@
 <?php
 
+class Post
+{
+    // public の場合、自動的にカラム名のプロパティが作られるので書かなくてもいい。 private の場合は書く
+    // public $id;
+    // public $message;
+    // public $likes;
+
+    public function show()
+    {
+        echo "$this->message ($this->likes)" . PHP_EOL;
+    }
+}
 try {
   $pdo = new PDO(
     'mysql:host=db;dbname=myapp;charset=utf8mb4',
@@ -56,14 +68,12 @@ try {
   echo 'ID: ' . $pdo->lastInsertId() . 'inserted' . PHP_EOL;
   
   $stmt = $pdo->query("SELECT * FROM posts");
-  $posts = $stmt->fetchAll();
+  // PDO::FETCH_CLASS でどのクラスでデータを引っ張ってきたいかを設定する
+  // これで抽出したデータをそれぞれのプロパティにセットして結果を返してくれる
+  $posts = $stmt->fetchAll(PDO::FETCH_CLASS, 'Post');
   foreach ($posts as $post) {
-    printf(
-     '[%d] %s (%d)' . PHP_EOL, 
-      $post["id"],
-      $post['message'],
-      $post['likes']
-    );
+      // Post クラスの show() メソッドを実行
+    $post->show();
   }
 } catch (PDOException $e) {
   echo $e->getMessage() . PHP_EOL;
