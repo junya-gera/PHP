@@ -27,6 +27,21 @@ print($today->format('G時 i分 s秒') . PHP_EOL); // format はインスタン�
 <?php $tax = 1.08; ?>
 合計金額は:<?php print($sum); ?> 円です
 税込み価格は:<?php print($sum * $tax); ?> 円です
+
+<?php
+$i = 1;
+while ($i <= 30) {
+    print($i . "\n");
+    $i++;
+}
+
+for ($i=1; $i<=30; $i++) {
+    print($i . "\n");
+}
+
+?>
+
+
 </pre>
 </main>
 </body>    
