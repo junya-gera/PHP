@@ -21,8 +21,12 @@
 <?php
 // print('現在は' . date('G時 i分 s秒') . 'です');
 $today = new DateTime(); // DateTime オブジェクトのインスタンス
-print($today->format('G時 i分 s秒')); // format はインスタンスメソッド
+print($today->format('G時 i分 s秒') . PHP_EOL); // format はインスタンスメソッド
 ?>
+<?php $sum = 100 + 1050 + 200 + 500; ?>
+<?php $tax = 1.08; ?>
+合計金額は:<?php print($sum); ?> 円です
+税込み価格は:<?php print($sum * $tax); ?> 円です
 </pre>
 </main>
 </body>    
