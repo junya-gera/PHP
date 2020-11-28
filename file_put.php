@@ -23,6 +23,7 @@
 // '書き込みを行うファイルの場所', '書き込む内容'
 // 戻り値に書き込みが成功したかどうかを返す
 $success = file_put_contents('../../news_data/news.txt', '2018-06-01 ホームページをリニューアルしました');
+$success = file_put_contents('../../news_data/news.txt', '2018-06-02 ホームページを爆破しました' . "\n");
 if ($success) {
     print('ファイルへの書き込みが完了しました');
 } else {
