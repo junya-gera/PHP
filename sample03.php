@@ -35,6 +35,11 @@ foreach($fruits as $english => $japanese) {
     print($english . ':' . $japanese  . "\n");
 }
 
+// sprintf 指定した数字の桁数分に足りない場合、別の文字で埋める
+// この場合は 0 で埋める
+$date = sprintf('%04d年 %02d月 %02d日', 2020, 11, 28);
+print($date);
+
 
 ?>
 </pre>
