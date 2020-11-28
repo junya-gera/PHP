@@ -21,7 +21,21 @@
 <?php
 $week_name = ['日', '月', '火', '水', '木', '金', '土'];
 // date('w') で曜日と対応する数字が表示される
-print($week_name[date('w')]);
+print($week_name[date('w')] . PHP_EOL);
+
+$fruits = [
+    'apple' => 'りんご',
+    'grape' => 'ぶどう',
+    'lemon' => 'レモン',
+    'tomato' => 'トマト',
+    'peach' => 'もも'
+];
+
+foreach($fruits as $english => $japanese) {
+    print($english . ':' . $japanese  . "\n");
+}
+
+
 ?>
 </pre>
 </main>
